@@ -8,6 +8,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Connect to the Socket.io server
+    // const newSocket = io('http://localhost:5000'); // Replace with your backend URL
     const newSocket = io('https://task-management-app-server-vsp6.onrender.com'); // Replace with your backend URL
     setSocket(newSocket);
 

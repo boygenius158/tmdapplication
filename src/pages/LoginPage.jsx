@@ -16,7 +16,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import authService from "../services/authService";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -55,20 +55,20 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Here you would typically send the login request to your backend
+      try {
+        // Here you would typically send the login request to your backend
 
-      console.log("Login submitted", { email, password });
+        console.log("Login submitted", { email, password });
 
-      const response = await authService.loginUser(email, password);
-      console.log(response, "responsdd");
+        const response = await authService.loginUser(email, password);
 
-      toast.success("Successfully logged in");
-      if (response.status === 200) {
-        console.log("pooo");
-
-        navigate("/");
+        toast.success("Successfully logged in");
+        if (response.status === 200) {
+          navigate("/");
+        }
+      } catch (error) {
+        toast.error("email or password appears to be wrong");
       }
-      console.log(response);
     }
   };
 
@@ -123,6 +123,13 @@ export default function LoginPage() {
             </Button>
           </CardFooter>
         </form>
+        <CardFooter>
+          <Link to="/register">
+            <Button variant="outline" className="w-full">
+              Register
+            </Button>
+          </Link>
+        </CardFooter>
       </Card>
     </div>
   );

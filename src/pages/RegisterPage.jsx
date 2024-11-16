@@ -17,7 +17,7 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import taskService from "../services/taskService";
 import authService from "../services/authService";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { Link, useNavigate } from "react-router-dom"; // Import the useNavigate hook
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -148,7 +148,15 @@ export default function RegisterPage() {
               Register
             </Button>
           </CardFooter>
+          
         </form>
+        <CardFooter>
+          <Link to="/login">
+            <Button variant="outline" className="w-full">
+              Login
+            </Button>
+          </Link>
+        </CardFooter>
       </Card>
     </div>
   );
